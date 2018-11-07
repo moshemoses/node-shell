@@ -1,5 +1,6 @@
 let pwd = require("./pwd");
 let ls = require("./ls");
+let cat = require("./cat");
 
 function CB(input) {
   input = input.toString().trim();
@@ -7,6 +8,14 @@ function CB(input) {
     ls();
   } else if (input === "pwd") {
     pwd();
+  } else if (input === "cat") {
+    process.stdout.write("Which file would you like to view?");
+
+    process.stdin.on("data", function(data) {
+      data = data.toString().trim();
+      cat(data);
+    });
+    //process.stdout.write(ans);
   } else {
     process.stdout.write(input);
     process.stdout.write("\nprompt > ");
